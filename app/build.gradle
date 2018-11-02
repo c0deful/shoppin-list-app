@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "dplewa.pl.shoppinglistapp"
+        applicationId "pl.dplewa.shoppinglistapp"
         minSdkVersion 26
         targetSdkVersion 28
         versionCode 1

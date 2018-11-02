@@ -24,6 +24,6 @@ public class ProductLoader extends CursorLoader {
 
     @Override
     public Cursor loadInBackground() {
-        return db.query(productTable, null, null, null, null, null, null);
+        return db.query(productTable, new String[] { "ROWID", "*" }, null, null, null, null, null);
     }
 }
