@@ -1,4 +1,4 @@
-package dplewa.pl.shoppinglistapp;
+package pl.dplewa.shoppinglistapp;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

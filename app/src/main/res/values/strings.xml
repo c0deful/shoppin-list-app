@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">ShoppingListApp</string>
     <string name="action_settings">Settings</string>
+    <string name="db_name">shopping-list-app-db</string>
+    <string name="db_products_table">products</string>
+    <string name="db_products_name_column">name</string>
+    <string name="db_products_price_column">price</string>
+    <string name="db_products_purchased_column">purchased</string>
 </resources>
