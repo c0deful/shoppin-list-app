@@ -36,7 +36,7 @@ public class AddProductActivity extends AppCompatActivity {
         final String purchasedColumn = getString(R.string.db_products_purchased_column);
         final ContentValues productValues = new ContentValues(3);
         productValues.put(nameColumn, nameField.getText().toString());
-        productValues.put(priceColumn, "1.50");
+        productValues.put(priceColumn, priceField.getText().toString());
         productValues.put(purchasedColumn, 0);
         db.insert(productsTable, null, productValues);
         finish();

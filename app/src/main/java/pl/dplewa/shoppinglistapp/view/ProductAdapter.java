@@ -14,6 +14,11 @@ import java.util.List;
 import pl.dplewa.shoppinglistapp.R;
 import pl.dplewa.shoppinglistapp.data.Product;
 
+import static android.view.View.GONE;
+
+/**
+ * @author Dominik Plewa
+ */
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
 
     private List<Product> products;
@@ -30,11 +35,20 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductAdapter.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull final ProductAdapter.ViewHolder viewHolder, int i) {
         Product product = products.get(i);
         viewHolder.name.setText(product.getName());
         viewHolder.price.setText(NumberFormat.getCurrencyInstance().format(product.getPrice()));
         viewHolder.isPurchased.setChecked(product.isPurchased());
+        viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                notifyItemChanged(viewHolder.getAdapterPosition());
+                notifyItemRangeRemoved(viewHolder.getAdapterPosition(), 1);
+                v.setVisibility(GONE);
+                return true;
+            }
+        });
     }
 
     @Override
