@@ -1,4 +1,4 @@
-package dplewa.pl.shoppinglistapp;
+package pl.dplewa.shoppinglistapp;
 
 import org.junit.Test;
 
