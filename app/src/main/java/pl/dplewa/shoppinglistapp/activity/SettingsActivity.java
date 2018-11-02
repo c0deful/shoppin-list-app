@@ -1,4 +1,4 @@
-package pl.dplewa.shoppinglistapp;
+package pl.dplewa.shoppinglistapp.activity;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import pl.dplewa.shoppinglistapp.R;
 
 public class SettingsActivity extends AppCompatActivity {
     private static final String OPTION_1 = "option1";

@@ -1,6 +1,5 @@
-package pl.dplewa.shoppinglistapp;
+package pl.dplewa.shoppinglistapp.view;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,16 +8,18 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import java.text.NumberFormat;
 import java.util.List;
+
+import pl.dplewa.shoppinglistapp.R;
+import pl.dplewa.shoppinglistapp.data.Product;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
 
     private List<Product> products;
-    private Context context;
 
-    public ProductAdapter(List<Product> products, Context context) {
+    public ProductAdapter(List<Product> products) {
         this.products = products;
-        this.context = context;
     }
 
     @NonNull
@@ -32,6 +33,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     public void onBindViewHolder(@NonNull ProductAdapter.ViewHolder viewHolder, int i) {
         Product product = products.get(i);
         viewHolder.name.setText(product.getName());
+        viewHolder.price.setText(NumberFormat.getCurrencyInstance().format(product.getPrice()));
         viewHolder.isPurchased.setChecked(product.isPurchased());
     }
 
@@ -40,14 +42,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         return products.size();
     }
 
-    public final class ViewHolder extends RecyclerView.ViewHolder {
+    final class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView name;
-        private CheckBox isPurchased;
+        private final TextView name;
+        private final TextView price;
+        private final CheckBox isPurchased;
 
-        public ViewHolder(@NonNull View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.productNameText);
+            price = itemView.findViewById(R.id.productPriceText);
             isPurchased = itemView.findViewById(R.id.productPurchasedCheckBox);
         }
     }

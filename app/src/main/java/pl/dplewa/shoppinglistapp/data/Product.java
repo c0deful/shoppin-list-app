@@ -1,4 +1,4 @@
-package pl.dplewa.shoppinglistapp;
+package pl.dplewa.shoppinglistapp.data;
 
 import java.math.BigDecimal;
 
