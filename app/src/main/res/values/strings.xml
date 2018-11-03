@@ -6,4 +6,5 @@
     <string name="db_products_name_column">name</string>
     <string name="db_products_price_column">price</string>
     <string name="db_products_purchased_column">purchased</string>
+    <string name="db_products_count_column">count</string>
 </resources>

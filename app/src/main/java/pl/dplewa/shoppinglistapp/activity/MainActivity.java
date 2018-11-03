@@ -28,22 +28,29 @@ import pl.dplewa.shoppinglistapp.view.ProductAdapter;
 /**
  * @author Dominik Plewa
  */
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Product>> {
+
+    private RecyclerView shoppingListRecycler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_shopping_list);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+
+        final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        final FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getBaseContext(), AddProductActivity.class));
             }
         });
+
+        shoppingListRecycler = findViewById(R.id.shoppingListRecycler);
+        shoppingListRecycler.setLayoutManager(new LinearLayoutManager(this));
     }
 
     @Override
@@ -76,31 +83,17 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @NonNull
     @Override
-    public Loader<Cursor> onCreateLoader(int i, @Nullable Bundle bundle) {
+    public Loader<List<Product>> onCreateLoader(int i, @Nullable Bundle bundle) {
         return new ProductLoader(this);
     }
 
     @Override
-    public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor cursor) {
-        RecyclerView shoppingListRecycler = findViewById(R.id.shoppingListRecycler);
-        shoppingListRecycler.setLayoutManager(new LinearLayoutManager(this));
-        List<Product> products = new ArrayList<>(cursor.getCount());
-        try {
-            while (cursor.moveToNext()) {
-                products.add(new Product(
-                        cursor.getInt(0),
-                        cursor.getString(1),
-                        new BigDecimal(cursor.getDouble(2)),
-                        cursor.getInt(3) != 0));
-            }
-        } finally {
-            cursor.close();
-        }
+    public void onLoadFinished(@NonNull Loader<List<Product>> loader, List<Product> products) {
         shoppingListRecycler.setAdapter(new ProductAdapter(this, products));
     }
 
     @Override
-    public void onLoaderReset(@NonNull Loader<Cursor> loader) {
+    public void onLoaderReset(@NonNull Loader<List<Product>> loader) {
         // nothing to do here
     }
 }
