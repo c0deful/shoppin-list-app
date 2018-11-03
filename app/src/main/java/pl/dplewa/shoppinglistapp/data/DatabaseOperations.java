@@ -54,11 +54,22 @@ public class DatabaseOperations {
     public void insertProduct(@NonNull String name, @NonNull String price, @Nullable Integer count) {
         if (db.isReadOnly())
             throw new AssertionError("Cannot execute db operation on read-only db");
-        final ContentValues productValues = new ContentValues(3);
+        final ContentValues productValues = new ContentValues(4);
         productValues.put(nameColumn, name);
         productValues.put(priceColumn, price);
         productValues.put(countColumn, count);
         productValues.put(purchasedColumn, false);
         db.insert(productsTable, null, productValues);
+    }
+
+    public void updateProduct(@NonNull Integer productId, @NonNull String name, @NonNull String price, @NonNull Integer count) {
+        if (db.isReadOnly())
+            throw new AssertionError("Cannot execute db operation on read-only db");
+        final ContentValues productValues = new ContentValues(4);
+        productValues.put(nameColumn, name);
+        productValues.put(priceColumn, price);
+        productValues.put(countColumn, count);
+        productValues.put(purchasedColumn, false);
+        db.update(productsTable, productValues, idColumn + " = ?", new String[]{String.valueOf(productId)});
     }
 }

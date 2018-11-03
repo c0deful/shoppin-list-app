@@ -1,8 +1,7 @@
 package pl.dplewa.shoppinglistapp.view;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,11 +15,11 @@ import java.text.NumberFormat;
 import java.util.List;
 
 import pl.dplewa.shoppinglistapp.R;
-import pl.dplewa.shoppinglistapp.data.DatabaseOpenHelper;
+import pl.dplewa.shoppinglistapp.activity.EditProductActivity;
 import pl.dplewa.shoppinglistapp.data.DatabaseOperations;
 import pl.dplewa.shoppinglistapp.data.Product;
 
-import static android.view.View.GONE;
+import static android.support.v4.content.ContextCompat.startActivity;
 
 /**
  * @author Dominik Plewa
@@ -29,9 +28,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     private List<Product> products;
     private DatabaseOperations dbOps;
+    private Context context;
 
     public ProductAdapter(Context context, List<Product> products) {
         this.products = products;
+        this.context = context;
         dbOps = new DatabaseOperations(context);
     }
 
@@ -63,6 +64,17 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
                 products.remove(viewHolder.getAdapterPosition());
                 notifyItemRemoved(viewHolder.getAdapterPosition());
                 return true;
+            }
+        });
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, EditProductActivity.class);
+                intent.putExtra(EditProductActivity.PRODUCT_ID, product.getId());
+                intent.putExtra(EditProductActivity.PRODUCT_NAME, product.getName());
+                intent.putExtra(EditProductActivity.PRODUCT_PRICE, product.getPrice().toPlainString());
+                intent.putExtra(EditProductActivity.PRODUCT_COUNT, String.valueOf(product.getCount()));
+                startActivity(context, intent, null);
             }
         });
     }
