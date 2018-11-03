@@ -48,6 +48,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         viewHolder.id = product.getId();
         viewHolder.name.setText(product.getName());
         viewHolder.price.setText(NumberFormat.getCurrencyInstance().format(product.getPrice()));
+        viewHolder.count.setText(String.valueOf(product.getCount()));
         viewHolder.isPurchased.setChecked(product.isPurchased());
         viewHolder.isPurchased.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -76,12 +77,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         private int id;
         private final TextView name;
         private final TextView price;
+        private final TextView count;
         private final CheckBox isPurchased;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.productNameText);
             price = itemView.findViewById(R.id.productPriceText);
+            count = itemView.findViewById(R.id.productCountText);
             isPurchased = itemView.findViewById(R.id.productPurchasedCheckBox);
         }
     }

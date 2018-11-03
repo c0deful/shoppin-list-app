@@ -6,12 +6,14 @@ public class Product {
     private int id;
     private String name;
     private BigDecimal price;
+    private final int count;
     private boolean isPurchased;
 
-    public Product(int id, String name, BigDecimal price, boolean isPurchased) {
+    public Product(int id, String name, BigDecimal price, int count, boolean isPurchased) {
         this.id = id;
         this.name = name;
         this.price = price;
+        this.count = count;
         this.isPurchased = isPurchased;
     }
 
@@ -19,32 +21,19 @@ public class Product {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
+    public int getCount() {
+        return count;
     }
 
     public boolean isPurchased() {
         return isPurchased;
     }
-
-    public void setPurchased(boolean purchased) {
-        isPurchased = purchased;
-    }
-
 }
