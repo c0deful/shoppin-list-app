@@ -20,6 +20,7 @@
         </activity>
         <activity android:name=".activity.SettingsActivity" android:parentActivityName=".activity.MainActivity"/>
         <activity android:name=".activity.AddProductActivity" android:parentActivityName=".activity.MainActivity"/>
+        <activity android:name=".activity.EditProductActivity" android:parentActivityName=".activity.MainActivity"/>
     </application>
 
 </manifest>
