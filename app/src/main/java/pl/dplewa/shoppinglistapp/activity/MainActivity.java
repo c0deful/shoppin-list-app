@@ -87,14 +87,16 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         List<Product> products = new ArrayList<>(cursor.getCount());
         try {
             while (cursor.moveToNext()) {
-                products.add(new Product(cursor.getString(0),
-                        new BigDecimal(cursor.getDouble(1)),
-                        cursor.getInt(2) != 0));
+                products.add(new Product(
+                        cursor.getInt(0),
+                        cursor.getString(1),
+                        new BigDecimal(cursor.getDouble(2)),
+                        cursor.getInt(3) != 0));
             }
         } finally {
             cursor.close();
         }
-        shoppingListRecycler.setAdapter(new ProductAdapter(products));
+        shoppingListRecycler.setAdapter(new ProductAdapter(this, products));
     }
 
     @Override
