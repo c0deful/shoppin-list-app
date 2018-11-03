@@ -17,6 +17,7 @@ import java.util.List;
 
 import pl.dplewa.shoppinglistapp.R;
 import pl.dplewa.shoppinglistapp.data.DatabaseOpenHelper;
+import pl.dplewa.shoppinglistapp.data.DatabaseOperations;
 import pl.dplewa.shoppinglistapp.data.Product;
 
 import static android.view.View.GONE;
@@ -27,12 +28,11 @@ import static android.view.View.GONE;
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
 
     private List<Product> products;
-
-    private SQLiteDatabase db;
+    private DatabaseOperations dbOps;
 
     public ProductAdapter(Context context, List<Product> products) {
         this.products = products;
-        db = new DatabaseOpenHelper(context).getWritableDatabase();
+        dbOps = new DatabaseOperations(context);
     }
 
     @NonNull
@@ -52,18 +52,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         viewHolder.isPurchased.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                ContentValues productValues = new ContentValues();
-                productValues.put("purchased", isChecked);
-                db.update("products", productValues, "ROWID = " + viewHolder.id, null);
+                dbOps.updateProductPurchased(viewHolder.id, isChecked);
             }
         });
         viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                db.delete("products", "ROWID = " + viewHolder.id, null);
-                notifyItemChanged(viewHolder.getAdapterPosition());
-                notifyItemRangeRemoved(viewHolder.getAdapterPosition(), 1);
-                v.setVisibility(GONE);
+                dbOps.deleteProduct(viewHolder.id);
+                products.remove(viewHolder.getAdapterPosition());
+                notifyItemRemoved(viewHolder.getAdapterPosition());
                 return true;
             }
         });
