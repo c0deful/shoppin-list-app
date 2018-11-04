@@ -2,8 +2,10 @@ package pl.dplewa.shoppinglistapp.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +28,8 @@ import static android.support.v4.content.ContextCompat.startActivity;
  */
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
 
+    public static final String FONT_SIZE_OPTION = "fontSize";
+
     private List<Product> products;
     private DatabaseOperations dbOps;
     private Context context;
@@ -46,6 +50,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull final ProductAdapter.ViewHolder viewHolder, int i) {
         final Product product = products.get(i);
+
+        updateTextSize(viewHolder.name, viewHolder.price, viewHolder.count);
+
         viewHolder.id = product.getId();
         viewHolder.name.setText(product.getName());
         viewHolder.price.setText(NumberFormat.getCurrencyInstance().format(product.getPrice()));
@@ -77,6 +84,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
                 startActivity(context, intent, null);
             }
         });
+    }
+
+    private void updateTextSize(TextView ... views) {
+        for (TextView view : views) {
+            view.setTextSize(TypedValue.COMPLEX_UNIT_DIP, getFontSize());
+        }
+    }
+
+    private Integer getFontSize() {
+        return PreferenceManager.getDefaultSharedPreferences(context).getInt(FONT_SIZE_OPTION, 16);
     }
 
     @Override
