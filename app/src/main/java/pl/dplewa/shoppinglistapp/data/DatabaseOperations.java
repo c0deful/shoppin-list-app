@@ -14,7 +14,7 @@ import pl.dplewa.shoppinglistapp.R;
  */
 public class DatabaseOperations {
 
-    private final SQLiteDatabase db;
+    final SQLiteDatabase db;
     final String productsTable;
     final String idColumn;
     final String nameColumn;
