@@ -7,4 +7,7 @@
     <string name="db_products_price_column">price</string>
     <string name="db_products_purchased_column">purchased</string>
     <string name="db_products_count_column">count</string>
+    <string name="productFormNameValidateToast">Enter the name first</string>
+    <string name="productFormPriceValidateToast">Enter the price first</string>
+    <string name="productFormCountValidateToast">Enter the count first</string>
 </resources>
