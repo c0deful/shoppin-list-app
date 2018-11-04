@@ -21,6 +21,11 @@
         <activity android:name=".activity.SettingsActivity" android:parentActivityName=".activity.MainActivity"/>
         <activity android:name=".activity.AddProductActivity" android:parentActivityName=".activity.MainActivity"/>
         <activity android:name=".activity.EditProductActivity" android:parentActivityName=".activity.MainActivity"/>
+        <provider
+            android:name=".data.ShoppingListContentProvider"
+            android:authorities="pl.dplewa.shoppinglistapp.data"
+            android:exported="true">
+        </provider>
     </application>
 
 </manifest>
