@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="pl.dplewa.shoppinglistapp" >
+    package="pl.dplewa.shoppinglistapp">
+
+    <permission-group
+        android:name="pl.dplewa.shoppinglistapp.permissions"
+        android:label="ShoppingListApp permissions group" />
+    <permission
+        android:name="pl.dplewa.shoppinglistapp.permissions.NEW_ENTRY_INTENT"
+        android:label="Permission for receiving updates when a new entry is added"
+        android:permissionGroup="pl.dplewa.shoppinglistapp.permissions" />
+    <uses-permission android:name="pl.dplewa.shoppinglistapp.permissions.NEW_ENTRY_INTENT" />
 
     <application
         android:allowBackup="true"
@@ -8,24 +17,30 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.SettingsActivity" android:parentActivityName=".activity.MainActivity"/>
-        <activity android:name=".activity.AddProductActivity" android:parentActivityName=".activity.MainActivity"/>
-        <activity android:name=".activity.EditProductActivity" android:parentActivityName=".activity.MainActivity"/>
+        <activity
+            android:name=".activity.SettingsActivity"
+            android:parentActivityName=".activity.MainActivity" />
+        <activity
+            android:name=".activity.AddProductActivity"
+            android:parentActivityName=".activity.MainActivity" />
+        <activity
+            android:name=".activity.EditProductActivity"
+            android:parentActivityName=".activity.MainActivity" />
+
         <provider
             android:name=".data.ShoppingListContentProvider"
             android:authorities="pl.dplewa.shoppinglistapp.data"
-            android:exported="true">
-        </provider>
+            android:exported="true"></provider>
     </application>
 
 </manifest>
