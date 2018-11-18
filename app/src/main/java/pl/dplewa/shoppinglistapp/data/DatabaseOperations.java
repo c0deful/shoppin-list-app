@@ -51,7 +51,7 @@ public class DatabaseOperations {
                 null, null, null, null, null);
     }
 
-    public void insertProduct(@NonNull String name, @NonNull String price, @Nullable Integer count) {
+    public long insertProduct(@NonNull String name, @NonNull String price, @Nullable Integer count) {
         if (db.isReadOnly())
             throw new AssertionError("Cannot execute db operation on read-only db");
         final ContentValues productValues = new ContentValues(4);
@@ -59,10 +59,10 @@ public class DatabaseOperations {
         productValues.put(priceColumn, price);
         productValues.put(countColumn, count);
         productValues.put(purchasedColumn, false);
-        db.insert(productsTable, null, productValues);
+        return db.insert(productsTable, null, productValues);
     }
 
-    public void updateProduct(@NonNull Integer productId, @NonNull String name, @NonNull String price, @NonNull Integer count) {
+    public long updateProduct(@NonNull Integer productId, @NonNull String name, @NonNull String price, @NonNull Integer count) {
         if (db.isReadOnly())
             throw new AssertionError("Cannot execute db operation on read-only db");
         final ContentValues productValues = new ContentValues(4);
@@ -70,6 +70,6 @@ public class DatabaseOperations {
         productValues.put(priceColumn, price);
         productValues.put(countColumn, count);
         productValues.put(purchasedColumn, false);
-        db.update(productsTable, productValues, idColumn + " = ?", new String[]{String.valueOf(productId)});
+        return db.update(productsTable, productValues, idColumn + " = ?", new String[]{String.valueOf(productId)});
     }
 }
