@@ -4,12 +4,15 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
+/**
+ * @author Dominik Plewa
+ */
 public class ShoppingListNewEntryReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        // TODO: This method is called when the BroadcastReceiver is receiving
-        // an Intent broadcast.
-        throw new UnsupportedOperationException("Not yet implemented");
+        NewEntryNotificationService service = ((NewEntryNotificationService.Binder) peekService(
+                context, new Intent(context, NewEntryNotificationService.class))).getService();
+        service.notifyAboutNewEntry(intent.getLongExtra("entryId", -1L));
     }
 }

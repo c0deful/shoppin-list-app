@@ -7,8 +7,7 @@
         android:label="ShoppingListApp permissions group" />
     <permission
         android:name="pl.dplewa.shoppinglistapp.permissions.NEW_ENTRY_INTENT"
-        android:label="Permission for receiving updates when a new entry is added"
-        android:permissionGroup="pl.dplewa.shoppinglistapp.permissions" />
+        android:label="Permission for receiving updates when a new entry is added" />
     <uses-permission android:name="pl.dplewa.shoppinglistapp.permissions.NEW_ENTRY_INTENT" />
 
     <application
@@ -40,7 +39,7 @@
         <provider
             android:name=".data.ShoppingListContentProvider"
             android:authorities="pl.dplewa.shoppinglistapp.data"
-            android:exported="true"></provider>
+            android:exported="true" />
     </application>
 
 </manifest>

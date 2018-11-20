@@ -16,6 +16,6 @@ public class AddProductActivity extends AbstractProductFormActivity {
         Intent broadcastIntent = new Intent();
         broadcastIntent.putExtra("entryId", rowid);
         broadcastIntent.setAction("pl.dplewa.shoppinglistapp.NEW_ENTRY");
-        sendBroadcast(broadcastIntent);
+        sendBroadcast(broadcastIntent, "pl.dplewa.shoppinglistapp.permissions.NEW_ENTRY_INTENT");
     }
 }
