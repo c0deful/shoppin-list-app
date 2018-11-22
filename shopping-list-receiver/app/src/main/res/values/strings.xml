@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Shopping List Receiver</string>
+    <string name="channel_name">New Shopping List Entries</string>
+    <string name="channel_description">This channel displays notification about new entries in the ShoppingListApp</string>
+    <string name="channel_id">shoppingListAppNewEntryChannel</string>
+</resources>
