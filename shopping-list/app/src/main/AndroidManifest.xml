@@ -34,7 +34,12 @@
             android:parentActivityName=".activity.MainActivity" />
         <activity
             android:name=".activity.EditProductActivity"
-            android:parentActivityName=".activity.MainActivity" />
+            android:parentActivityName=".activity.MainActivity">
+            <intent-filter>
+                <action android:name="pl.dplewa.shoppinglistapp.action.EDIT" />
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
 
         <provider
             android:name=".data.ShoppingListContentProvider"

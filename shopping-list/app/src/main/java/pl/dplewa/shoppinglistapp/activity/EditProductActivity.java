@@ -1,11 +1,13 @@
 package pl.dplewa.shoppinglistapp.activity;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 
 import pl.dplewa.shoppinglistapp.R;
+import pl.dplewa.shoppinglistapp.data.DatabaseOpenHelper;
 import pl.dplewa.shoppinglistapp.data.DatabaseOperations;
 
 /**
@@ -13,10 +15,9 @@ import pl.dplewa.shoppinglistapp.data.DatabaseOperations;
  */
 public class EditProductActivity extends AbstractProductFormActivity {
 
-    public static final String PRODUCT_NAME = "productName";
-    public static final String PRODUCT_PRICE = "productPrice";
-    public static final String PRODUCT_COUNT = "productCount";
-    public static final String PRODUCT_ID = "rowid";
+    public static final String PRODUCT_ID = "entryId";
+
+    private static final int MISSING_ID = -71;
 
     private int productId;
 
@@ -25,10 +26,26 @@ public class EditProductActivity extends AbstractProductFormActivity {
         super.onCreate(savedInstanceState);
 
         Bundle extras = getIntent().getExtras();
-        productId = extras.getInt(PRODUCT_ID);
-        nameField.setText(extras.getString(PRODUCT_NAME));
-        priceField.setText(extras.getString(PRODUCT_PRICE));
-        countField.setText(extras.getString(PRODUCT_COUNT));
+        if (extras == null) {
+            finish();
+            return;
+        }
+
+        productId = extras.getInt(PRODUCT_ID, MISSING_ID);
+        if (productId == MISSING_ID) {
+            finish();
+            return;
+        }
+
+        Cursor cursor = dbOps.getProducts(productId);
+        if (!cursor.moveToNext()) {
+            finish();
+            return;
+        }
+
+        nameField.setText(cursor.getString(cursor.getColumnIndex(dbOps.nameColumn)));
+        priceField.setText(cursor.getString(cursor.getColumnIndex(dbOps.priceColumn)));
+        countField.setText(cursor.getString(cursor.getColumnIndex(dbOps.countColumn)));
     }
 
     @Override

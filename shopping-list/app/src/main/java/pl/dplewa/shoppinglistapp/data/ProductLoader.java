@@ -33,7 +33,7 @@ public class ProductLoader extends AsyncTaskLoader<List<Product>> {
 
     @Override
     public List<Product> loadInBackground() {
-        Cursor cursor = dbOps.getAllProducts();
+        Cursor cursor = dbOps.getProducts(null);
         List<Product> result = new ArrayList<>(cursor.getCount());
         while (cursor.moveToNext()) {
             final int id = cursor.getInt(cursor.getColumnIndex(dbOps.idColumn));

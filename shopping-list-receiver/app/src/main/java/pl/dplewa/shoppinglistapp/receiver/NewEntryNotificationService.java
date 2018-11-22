@@ -14,6 +14,8 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 
 import java.lang.ref.WeakReference;
+import java.math.BigDecimal;
+import java.text.NumberFormat;
 
 /**
  * @author Dominik Plewa
@@ -43,18 +45,19 @@ public class NewEntryNotificationService extends Service {
         return new Binder();
     }
 
-    public void notifyAboutNewEntry(long id) {
-        Intent intent = new Intent(this, MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+    public void notifyAboutNewEntry(int entryId, String name, String price) {
+        Intent editItemIntent = new Intent("pl.dplewa.shoppinglistapp.action.EDIT");
+        editItemIntent.putExtra("entryId", entryId);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, entryId, editItemIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Builder notif = new NotificationCompat.Builder(this, getString(R.string.channel_id))
                 .setSmallIcon(R.drawable.ic_launcher)
-                .setContentTitle("TESTING")
-                .setContentText("much testing wow")
+                .setContentTitle("New product on your shopping list")
+                .setContentText(name + " " + NumberFormat.getCurrencyInstance().format(new BigDecimal(price)))
                 .setContentIntent(pendingIntent)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setAutoCancel(true);
         NotificationManagerCompat nm = NotificationManagerCompat.from(this);
-        nm.notify((int) id, notif.build());
+        nm.notify(entryId, notif.build());
     }
 
     class Binder extends android.os.Binder {

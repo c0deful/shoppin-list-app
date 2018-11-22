@@ -17,9 +17,9 @@ public class DatabaseOperations {
     final SQLiteDatabase db;
     final String productsTable;
     final String idColumn;
-    final String nameColumn;
-    final String priceColumn;
-    final String countColumn;
+    public final String nameColumn;
+    public final String priceColumn;
+    public final String countColumn;
     final String purchasedColumn;
 
     public DatabaseOperations(Context context) {
@@ -46,9 +46,19 @@ public class DatabaseOperations {
         db.update(productsTable, productValues, idColumn + " = ?", new String[]{rowid.toString()});
     }
 
-    Cursor getAllProducts() {
+    public Cursor getAllProducts() {
+        return getProducts(null);
+    }
+
+    public Cursor getProducts(@Nullable Integer rowid) {
+        String selection = null;
+        String[] selectionArgs = null;
+        if (rowid != null) {
+            selection = idColumn + " = ?";
+            selectionArgs = new String[]{rowid.toString()};
+        }
         return db.query(productsTable, new String[]{idColumn, nameColumn, priceColumn, countColumn, purchasedColumn},
-                null, null, null, null, null);
+                selection, selectionArgs, null, null, null);
     }
 
     public long insertProduct(@NonNull String name, @NonNull String price, @Nullable Integer count) {
