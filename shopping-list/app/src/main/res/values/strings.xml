@@ -10,4 +10,5 @@
     <string name="productFormNameValidateToast">Enter the name first</string>
     <string name="productFormPriceValidateToast">Enter the price first</string>
     <string name="productFormCountValidateToast">Enter the count first</string>
+    <string name="auth.button.signin">Sign in</string>
 </resources>
