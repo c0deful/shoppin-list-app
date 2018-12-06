@@ -17,9 +17,7 @@ public class EditProductActivity extends AbstractProductFormActivity {
 
     public static final String PRODUCT_ID = "entryId";
 
-    private static final int MISSING_ID = -71;
-
-    private int productId;
+    private String productId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +29,8 @@ public class EditProductActivity extends AbstractProductFormActivity {
             return;
         }
 
-        productId = extras.getInt(PRODUCT_ID, MISSING_ID);
-        if (productId == MISSING_ID) {
+        productId = (String) extras.get(PRODUCT_ID);
+        if (productId == null) {
             finish();
             return;
         }
