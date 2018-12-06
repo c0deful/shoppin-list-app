@@ -44,11 +44,6 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
-
-        <provider
-            android:name=".data.ShoppingListContentProvider"
-            android:authorities="pl.dplewa.shoppinglistapp.data"
-            android:exported="true" />
     </application>
 
 </manifest>

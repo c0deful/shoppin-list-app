@@ -3,12 +3,16 @@ package pl.dplewa.shoppinglistapp.activity;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+
+import java.util.function.BiConsumer;
 
 import pl.dplewa.shoppinglistapp.R;
 import pl.dplewa.shoppinglistapp.data.DatabaseOpenHelper;
 import pl.dplewa.shoppinglistapp.data.DatabaseOperations;
+import pl.dplewa.shoppinglistapp.data.Product;
 
 /**
  * @author Dominik Plewa
@@ -18,6 +22,7 @@ public class EditProductActivity extends AbstractProductFormActivity {
     public static final String PRODUCT_ID = "entryId";
 
     private String productId;
+    private boolean isPurchased;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,22 +40,28 @@ public class EditProductActivity extends AbstractProductFormActivity {
             return;
         }
 
-        Cursor cursor = dbOps.getProducts(productId);
-        if (!cursor.moveToNext()) {
-            finish();
-            return;
-        }
-
-        nameField.setText(cursor.getString(cursor.getColumnIndex(dbOps.nameColumn)));
-        priceField.setText(cursor.getString(cursor.getColumnIndex(dbOps.priceColumn)));
-        countField.setText(cursor.getString(cursor.getColumnIndex(dbOps.countColumn)));
+        dbOps.getProduct(productId)
+                .whenComplete(new BiConsumer<Product, Throwable>() {
+                    @Override
+                    public void accept(Product product, Throwable throwable) {
+                        if (throwable != null) {
+                            Log.e("", "Error while getting product", throwable);
+                            finish();
+                        } else {
+                            nameField.setText(product.name);
+                            priceField.setText(product.price.toString());
+                            countField.setText(product.count.toString());
+                            isPurchased = product.isPurchased;
+                        }
+                    }
+                });
     }
 
     @Override
     protected void saveInternal(View view) {
-        dbOps.updateProduct(productId,
-                nameField.getText().toString(),
-                priceField.getText().toString(),
-                Integer.parseInt(countField.getText().toString()));
+        dbOps.updateProduct(productId, new Product(nameField.getText().toString(),
+                        Double.parseDouble(priceField.getText().toString()),
+                        Long.parseLong(countField.getText().toString()),
+                        isPurchased));
     }
 }

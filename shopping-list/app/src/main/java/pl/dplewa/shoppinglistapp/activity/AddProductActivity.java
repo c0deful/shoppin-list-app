@@ -20,14 +20,13 @@ public class AddProductActivity extends AbstractProductFormActivity {
         final Double price = Double.parseDouble(priceField.getText().toString());
         final Long count = Long.parseLong(countField.getText().toString());
         final Product product = new Product(name, price, count, Boolean.FALSE);
-        final String productId = dbOps.insertProduct(FirebaseAuth.getInstance().getCurrentUser().getUid(), product);
-        broadcastNewProduct(product);
+        final String productId = dbOps.insertProduct(product);
+        broadcastNewProduct(productId, product);
     }
 
-    private void broadcastNewProduct(Product product) {
+    private void broadcastNewProduct(String productId, Product product) {
         Intent broadcastIntent = new Intent();
-        // TODO
-//        broadcastIntent.putExtra("entryId", product.getId());
+        broadcastIntent.putExtra("entryId", productId);
         broadcastIntent.putExtra("name", product.name);
         broadcastIntent.putExtra("price", product.price);
         broadcastIntent.putExtra("count", product.count);

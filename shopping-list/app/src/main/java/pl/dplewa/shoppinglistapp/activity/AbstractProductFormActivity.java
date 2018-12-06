@@ -25,7 +25,7 @@ abstract class AbstractProductFormActivity extends ThemedActivity {
         nameField = findViewById(R.id.productFormName);
         priceField = findViewById(R.id.productFormPrice);
         countField = findViewById(R.id.productFormCount);
-        dbOps = new DatabaseOperations(this);
+        dbOps = new DatabaseOperations();
     }
 
     private boolean validate() {

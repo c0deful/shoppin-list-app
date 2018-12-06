@@ -44,7 +44,7 @@ public class ProductAdapter extends FirebaseRecyclerAdapter<Product, ProductAdap
                 .setQuery(getQuery(), Product.class)
                 .build());
         this.context = context;
-        dbOps = new DatabaseOperations(context);
+        dbOps = new DatabaseOperations();
     }
 
     private static Query getQuery() {
