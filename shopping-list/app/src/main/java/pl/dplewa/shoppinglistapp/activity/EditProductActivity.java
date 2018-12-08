@@ -1,17 +1,11 @@
 package pl.dplewa.shoppinglistapp.activity;
 
-import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 
 import java.util.function.BiConsumer;
 
-import pl.dplewa.shoppinglistapp.R;
-import pl.dplewa.shoppinglistapp.data.DatabaseOpenHelper;
-import pl.dplewa.shoppinglistapp.data.DatabaseOperations;
 import pl.dplewa.shoppinglistapp.data.Product;
 
 /**

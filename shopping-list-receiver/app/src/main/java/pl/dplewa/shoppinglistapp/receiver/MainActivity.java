@@ -35,7 +35,8 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.receiver = new ShoppingListNewEntryReceiver();
-        registerReceiver(receiver, new IntentFilter("pl.dplewa.shoppinglistapp.NEW_ENTRY"));
+        registerReceiver(receiver, new IntentFilter("pl.dplewa.shoppinglistapp.NEW_ENTRY"),
+                "pl.dplewa.shoppinglistapp.permissions.NEW_ENTRY_INTENT", null);
     }
 
     @Override

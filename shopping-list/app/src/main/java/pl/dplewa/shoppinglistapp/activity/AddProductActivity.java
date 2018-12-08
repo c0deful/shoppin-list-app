@@ -3,10 +3,6 @@ package pl.dplewa.shoppinglistapp.activity;
 import android.content.Intent;
 import android.view.View;
 
-import com.google.firebase.auth.FirebaseAuth;
-
-import java.math.BigDecimal;
-
 import pl.dplewa.shoppinglistapp.data.Product;
 
 /**

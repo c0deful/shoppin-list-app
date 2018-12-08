@@ -20,7 +20,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
 import java.text.NumberFormat;
-import java.util.List;
 
 import pl.dplewa.shoppinglistapp.R;
 import pl.dplewa.shoppinglistapp.activity.EditProductActivity;
