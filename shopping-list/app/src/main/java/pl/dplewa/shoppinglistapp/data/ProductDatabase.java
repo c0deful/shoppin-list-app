@@ -15,27 +15,39 @@ import java.util.concurrent.CompletableFuture;
 /**
  * @author Dominik Plewa
  */
-public class DatabaseOperations {
+public class ProductDatabase {
+
+    private static final String TAG = "PDB";
+    private static final String PRODUCTS_NODE = "products";
 
     private final DatabaseReference fbDatabase;
 
-    public DatabaseOperations() {
-        fbDatabase = FirebaseDatabase.getInstance().getReference("products");
+    public ProductDatabase() {
+        fbDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
+    private DatabaseReference getDb() {
+        return fbDatabase.child(getUserId()).child(PRODUCTS_NODE);
+    }
+
+    private DatabaseReference getDb(String id) {
+        return fbDatabase.child(getUserId()).child(PRODUCTS_NODE).child(id);
+    }
+
+
     public void deleteProduct(@NonNull String productId) {
-        final DatabaseReference productRef = fbDatabase.child(getUserId()).child(productId);
+        final DatabaseReference productRef = getDb(productId);
         productRef.removeValue();
     }
 
     public void updateProductPurchased(@NonNull String productId, @NonNull Boolean isPurchased) {
-        final DatabaseReference productRef = fbDatabase.child(getUserId()).child(productId);
+        final DatabaseReference productRef = getDb(productId);
         productRef.child("isPurchased").setValue(isPurchased);
     }
 
     public CompletableFuture<Product> getProduct(@NonNull String productId) {
         final CompletableFuture<Product> result = new CompletableFuture<>();
-        fbDatabase.child(getUserId()).child(productId).addListenerForSingleValueEvent(new ValueEventListener() {
+        getDb(productId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 result.complete(dataSnapshot.getValue(Product.class));
@@ -43,20 +55,20 @@ public class DatabaseOperations {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e("", "Cancelled value read", databaseError.toException());
+                Log.e(TAG, "Cancelled value read", databaseError.toException());
             }
         });
         return result;
     }
 
-    public String insertProduct(@NonNull Product product) {
-        final DatabaseReference productRef = fbDatabase.child(getUserId()).push();
+    public String insert(@NonNull Product product) {
+        final DatabaseReference productRef = getDb().push();
         productRef.setValue(product);
         return productRef.getKey();
     }
 
     public void updateProduct(@NonNull String productId, @NonNull Product product) {
-        final DatabaseReference productRef = fbDatabase.child(getUserId()).child(productId);
+        final DatabaseReference productRef = getDb(productId);
         productRef.setValue(product);
     }
 

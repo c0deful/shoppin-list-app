@@ -17,18 +17,18 @@ import pl.dplewa.shoppinglistapp.view.ProductAdapter;
 /**
  * @author Dominik Plewa
  */
-public class MainActivity extends ThemedActivity {
+public class ProductListActivity extends ThemedActivity {
 
     private static final int SETTINGS_REQUEST = 42;
 
-    private RecyclerView shoppingListRecycler;
+    private RecyclerView productListRecycler;
     private ProductAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_shopping_list);
+        setContentView(R.layout.activity_product_list);
 
         final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -41,22 +41,10 @@ public class MainActivity extends ThemedActivity {
             }
         });
 
-        adapter = new ProductAdapter(this);
-        shoppingListRecycler = findViewById(R.id.shoppingListRecycler);
-        shoppingListRecycler.setLayoutManager(new LinearLayoutManager(this));
-        shoppingListRecycler.setAdapter(adapter);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        adapter.startListening();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        adapter.stopListening();
+        adapter = new ProductAdapter(this, this);
+        productListRecycler = findViewById(R.id.productListRecycler);
+        productListRecycler.setLayoutManager(new LinearLayoutManager(this));
+        productListRecycler.setAdapter(adapter);
     }
 
     @Override
@@ -69,12 +57,16 @@ public class MainActivity extends ThemedActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
-            startActivityForResult(new Intent(this, SettingsActivity.class), SETTINGS_REQUEST);
-            return true;
+        switch (id) {
+            case R.id.action_settings:
+                startActivityForResult(new Intent(this, SettingsActivity.class), SETTINGS_REQUEST);
+                return true;
+            case R.id.action_shops:
+                startActivity(new Intent(this, ShopListActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @Override

@@ -6,11 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/activity_shopping_list"
-    tools:context=".activity.MainActivity">
+    tools:context=".activity.ShopListActivity">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/shoppingListRecycler"
+        android:id="@+id/shopListRecycler"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
