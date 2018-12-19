@@ -1,4 +1,4 @@
-package pl.dplewa.shoppinglistapp.activity;
+package pl.dplewa.shoppinglistapp.activity.product;
 
 import android.os.Bundle;
 import android.view.View;
@@ -6,6 +6,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import pl.dplewa.shoppinglistapp.R;
+import pl.dplewa.shoppinglistapp.activity.ThemedActivity;
 import pl.dplewa.shoppinglistapp.data.ProductDatabase;
 
 /**

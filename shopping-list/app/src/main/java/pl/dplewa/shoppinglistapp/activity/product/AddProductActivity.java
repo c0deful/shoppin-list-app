@@ -1,4 +1,4 @@
-package pl.dplewa.shoppinglistapp.activity;
+package pl.dplewa.shoppinglistapp.activity.product;
 
 import android.content.Intent;
 import android.view.View;

@@ -1,4 +1,4 @@
-package pl.dplewa.shoppinglistapp.activity;
+package pl.dplewa.shoppinglistapp.activity.product;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,6 +12,9 @@ import android.view.MenuItem;
 import android.view.View;
 
 import pl.dplewa.shoppinglistapp.R;
+import pl.dplewa.shoppinglistapp.activity.SettingsActivity;
+import pl.dplewa.shoppinglistapp.activity.shop.ShopListActivity;
+import pl.dplewa.shoppinglistapp.activity.ThemedActivity;
 import pl.dplewa.shoppinglistapp.view.ProductAdapter;
 
 /**

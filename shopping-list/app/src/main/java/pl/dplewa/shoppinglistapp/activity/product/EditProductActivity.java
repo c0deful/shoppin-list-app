@@ -1,4 +1,4 @@
-package pl.dplewa.shoppinglistapp.activity;
+package pl.dplewa.shoppinglistapp.activity.product;
 
 import android.os.Bundle;
 import android.util.Log;

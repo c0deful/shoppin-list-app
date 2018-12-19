@@ -2,16 +2,11 @@ package pl.dplewa.shoppinglistapp.view;
 
 import android.arch.lifecycle.LifecycleOwner;
 import android.content.Context;
-import android.content.Intent;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -20,16 +15,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
-import java.text.NumberFormat;
-
 import pl.dplewa.shoppinglistapp.R;
-import pl.dplewa.shoppinglistapp.activity.EditProductActivity;
-import pl.dplewa.shoppinglistapp.data.Product;
-import pl.dplewa.shoppinglistapp.data.ProductDatabase;
 import pl.dplewa.shoppinglistapp.data.Shop;
 import pl.dplewa.shoppinglistapp.data.ShopDatabase;
-
-import static android.support.v4.content.ContextCompat.startActivity;
 
 /**
  * @author Dominik Plewa

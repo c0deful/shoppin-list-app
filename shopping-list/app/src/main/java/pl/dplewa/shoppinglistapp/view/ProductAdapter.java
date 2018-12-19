@@ -23,7 +23,7 @@ import com.google.firebase.database.Query;
 import java.text.NumberFormat;
 
 import pl.dplewa.shoppinglistapp.R;
-import pl.dplewa.shoppinglistapp.activity.EditProductActivity;
+import pl.dplewa.shoppinglistapp.activity.product.EditProductActivity;
 import pl.dplewa.shoppinglistapp.data.ProductDatabase;
 import pl.dplewa.shoppinglistapp.data.Product;
 

@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.List;
 
 import pl.dplewa.shoppinglistapp.R;
+import pl.dplewa.shoppinglistapp.activity.product.ProductListActivity;
 
 /**
  * @author Dominik Plewa
