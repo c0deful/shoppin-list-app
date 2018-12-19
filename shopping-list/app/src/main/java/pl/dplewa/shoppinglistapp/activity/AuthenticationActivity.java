@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.List;
 
 import pl.dplewa.shoppinglistapp.R;
+import pl.dplewa.shoppinglistapp.activity.product.ProductListActivity;
 
 /**
  * @author Dominik Plewa
@@ -46,7 +47,7 @@ public class AuthenticationActivity extends ThemedActivity {
 
             if (resultCode == RESULT_OK) {
                 // Successfully signed in
-                Intent shoppingListIntent = new Intent(this, MainActivity.class);
+                Intent shoppingListIntent = new Intent(this, ProductListActivity.class);
                 shoppingListIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(shoppingListIntent);
             } else if (response != null) {

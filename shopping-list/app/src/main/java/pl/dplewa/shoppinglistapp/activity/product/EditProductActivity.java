@@ -1,4 +1,4 @@
-package pl.dplewa.shoppinglistapp.activity;
+package pl.dplewa.shoppinglistapp.activity.product;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -34,7 +34,7 @@ public class EditProductActivity extends AbstractProductFormActivity {
             return;
         }
 
-        dbOps.getProduct(productId)
+        productDb.getProduct(productId)
                 .whenComplete(new BiConsumer<Product, Throwable>() {
                     @Override
                     public void accept(Product product, Throwable throwable) {
@@ -53,7 +53,7 @@ public class EditProductActivity extends AbstractProductFormActivity {
 
     @Override
     protected void saveInternal(View view) {
-        dbOps.updateProduct(productId, new Product(nameField.getText().toString(),
+        productDb.updateProduct(productId, new Product(nameField.getText().toString(),
                         Double.parseDouble(priceField.getText().toString()),
                         Long.parseLong(countField.getText().toString()),
                         isPurchased));

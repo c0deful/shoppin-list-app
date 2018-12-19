@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatDelegate;
 /**
  * @author Dominik Plewa
  */
-abstract class ThemedActivity extends AppCompatActivity {
+public abstract class ThemedActivity extends AppCompatActivity {
 
     protected static final String THEME_OPTION = "theme";
     protected static final String THEME_DARK = "dark";

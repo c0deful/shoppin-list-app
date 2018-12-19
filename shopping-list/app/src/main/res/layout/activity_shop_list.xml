@@ -6,16 +6,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/activity_shopping_list"
-    tools:context=".activity.MainActivity">
+    tools:context=".activity.shop.ShopListActivity">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/shoppingListRecycler"
+        android:id="@+id/shopListRecycler"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:tint="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/shopListRecycler"
+        app:layout_constraintEnd_toEndOf="@+id/shopListRecycler"
+        app:srcCompat="@android:drawable/ic_input_add" />
 
 </android.support.constraint.ConstraintLayout>

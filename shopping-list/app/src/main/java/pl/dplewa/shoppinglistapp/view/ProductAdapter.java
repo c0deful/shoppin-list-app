@@ -1,5 +1,6 @@
 package pl.dplewa.shoppinglistapp.view;
 
+import android.arch.lifecycle.LifecycleOwner;
 import android.content.Context;
 import android.content.Intent;
 import android.preference.PreferenceManager;
@@ -22,8 +23,8 @@ import com.google.firebase.database.Query;
 import java.text.NumberFormat;
 
 import pl.dplewa.shoppinglistapp.R;
-import pl.dplewa.shoppinglistapp.activity.EditProductActivity;
-import pl.dplewa.shoppinglistapp.data.DatabaseOperations;
+import pl.dplewa.shoppinglistapp.activity.product.EditProductActivity;
+import pl.dplewa.shoppinglistapp.data.ProductDatabase;
 import pl.dplewa.shoppinglistapp.data.Product;
 
 import static android.support.v4.content.ContextCompat.startActivity;
@@ -35,21 +36,22 @@ public class ProductAdapter extends FirebaseRecyclerAdapter<Product, ProductAdap
 
     public static final String FONT_SIZE_OPTION = "fontSize";
 
-    private DatabaseOperations dbOps;
+    private ProductDatabase productDb;
     private Context context;
 
-    public ProductAdapter(Context context) {
+    public ProductAdapter(Context context, LifecycleOwner lifecycleOwner) {
         super(new FirebaseRecyclerOptions.Builder<Product>()
                 .setQuery(getQuery(), Product.class)
+                .setLifecycleOwner(lifecycleOwner)
                 .build());
         this.context = context;
-        dbOps = new DatabaseOperations();
+        productDb = new ProductDatabase();
     }
 
     private static Query getQuery() {
         return FirebaseDatabase.getInstance().getReference()
-                .child("products")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("products");
     }
 
     @NonNull
@@ -71,13 +73,13 @@ public class ProductAdapter extends FirebaseRecyclerAdapter<Product, ProductAdap
         viewHolder.isPurchased.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                dbOps.updateProductPurchased(viewHolder.id, isChecked);
+                productDb.updateProductPurchased(viewHolder.id, isChecked);
             }
         });
         viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                dbOps.deleteProduct(viewHolder.id);
+                productDb.deleteProduct(viewHolder.id);
                 notifyItemRemoved(viewHolder.getAdapterPosition());
                 return true;
             }
@@ -92,7 +94,7 @@ public class ProductAdapter extends FirebaseRecyclerAdapter<Product, ProductAdap
         });
     }
 
-    private void updateTextSize(TextView ... views) {
+    private void updateTextSize(TextView... views) {
         for (TextView view : views) {
             view.setTextSize(TypedValue.COMPLEX_UNIT_DIP, getFontSize());
         }

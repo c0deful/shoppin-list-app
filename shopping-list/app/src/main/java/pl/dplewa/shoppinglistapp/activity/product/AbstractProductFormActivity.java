@@ -1,4 +1,4 @@
-package pl.dplewa.shoppinglistapp.activity;
+package pl.dplewa.shoppinglistapp.activity.product;
 
 import android.os.Bundle;
 import android.view.View;
@@ -6,13 +6,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import pl.dplewa.shoppinglistapp.R;
-import pl.dplewa.shoppinglistapp.data.DatabaseOperations;
+import pl.dplewa.shoppinglistapp.activity.ThemedActivity;
+import pl.dplewa.shoppinglistapp.data.ProductDatabase;
 
 /**
  * @author Dominik Plewa
  */
 abstract class AbstractProductFormActivity extends ThemedActivity {
-    protected DatabaseOperations dbOps;
+    protected ProductDatabase productDb;
 
     protected EditText nameField;
     protected EditText priceField;
@@ -25,7 +26,7 @@ abstract class AbstractProductFormActivity extends ThemedActivity {
         nameField = findViewById(R.id.productFormName);
         priceField = findViewById(R.id.productFormPrice);
         countField = findViewById(R.id.productFormCount);
-        dbOps = new DatabaseOperations();
+        productDb = new ProductDatabase();
     }
 
     private boolean validate() {

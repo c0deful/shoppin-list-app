@@ -1,4 +1,4 @@
-package pl.dplewa.shoppinglistapp.activity;
+package pl.dplewa.shoppinglistapp.activity.product;
 
 import android.content.Intent;
 import android.view.View;
@@ -16,7 +16,7 @@ public class AddProductActivity extends AbstractProductFormActivity {
         final Double price = Double.parseDouble(priceField.getText().toString());
         final Long count = Long.parseLong(countField.getText().toString());
         final Product product = new Product(name, price, count, Boolean.FALSE);
-        final String productId = dbOps.insertProduct(product);
+        final String productId = productDb.insert(product);
         broadcastNewProduct(productId, product);
     }
 

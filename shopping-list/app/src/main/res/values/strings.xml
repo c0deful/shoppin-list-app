@@ -11,4 +11,10 @@
     <string name="productFormPriceValidateToast">Enter the price first</string>
     <string name="productFormCountValidateToast">Enter the count first</string>
     <string name="auth.button.signin">Sign in</string>
+    <string name="action_shops">Shops</string>
+    <string name="shopFormNameValidateToast">Enter the shop name first</string>
+    <string name="shopFormDescriptionValidateToast">Enter the shop description first</string>
+    <string name="shopFormRadiusValidateToast">Enter the location radius first</string>
+    <string name="shopFormLocationPermissionRequired">Cannot save shop without location permissions</string>
+    <string name="shopFormEnableGps">Please enable GPS</string>
 </resources>
