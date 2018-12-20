@@ -17,6 +17,7 @@
 
     <uses-feature android:name="android.hardware.location.network" />
     <uses-feature android:name="android.hardware.location.gps" />
+
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true" />
@@ -52,7 +53,6 @@
             android:parentActivityName=".activity.product.ProductListActivity">
             <intent-filter>
                 <action android:name="pl.dplewa.shoppinglistapp.action.EDIT" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

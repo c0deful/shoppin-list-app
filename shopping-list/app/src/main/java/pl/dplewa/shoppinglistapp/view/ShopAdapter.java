@@ -28,6 +28,7 @@ import static android.support.v4.content.ContextCompat.startActivity;
  */
 public class ShopAdapter extends FirebaseRecyclerAdapter<Shop, ShopAdapter.ViewHolder> {
 
+    private ShopDatabase shopDb;
     private Context context;
 
     public ShopAdapter(Context context, LifecycleOwner lifecycleOwner) {
@@ -36,6 +37,7 @@ public class ShopAdapter extends FirebaseRecyclerAdapter<Shop, ShopAdapter.ViewH
                 .setLifecycleOwner(lifecycleOwner)
                 .build());
         this.context = context;
+        this.shopDb = new ShopDatabase();
     }
 
     private static Query getQuery() {
