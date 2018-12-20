@@ -25,7 +25,7 @@ public class ShopDatabase {
         fbDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
-    private DatabaseReference getDb() {
+    public DatabaseReference getDb() {
         return fbDatabase.child(getUserId()).child(SHOPS_NODE);
     }
 

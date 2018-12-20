@@ -2,6 +2,7 @@ package pl.dplewa.shoppinglistapp.view;
 
 import android.arch.lifecycle.LifecycleOwner;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,15 +17,17 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
 import pl.dplewa.shoppinglistapp.R;
+import pl.dplewa.shoppinglistapp.activity.shop.ShopMapActivity;
 import pl.dplewa.shoppinglistapp.data.Shop;
 import pl.dplewa.shoppinglistapp.data.ShopDatabase;
+
+import static android.support.v4.content.ContextCompat.startActivity;
 
 /**
  * @author Dominik Plewa
  */
 public class ShopAdapter extends FirebaseRecyclerAdapter<Shop, ShopAdapter.ViewHolder> {
 
-    private ShopDatabase shopDb;
     private Context context;
 
     public ShopAdapter(Context context, LifecycleOwner lifecycleOwner) {
@@ -33,7 +36,6 @@ public class ShopAdapter extends FirebaseRecyclerAdapter<Shop, ShopAdapter.ViewH
                 .setLifecycleOwner(lifecycleOwner)
                 .build());
         this.context = context;
-        this.shopDb = new ShopDatabase();
     }
 
     private static Query getQuery() {
@@ -57,6 +59,15 @@ public class ShopAdapter extends FirebaseRecyclerAdapter<Shop, ShopAdapter.ViewH
         viewHolder.latitude.setText(shop.latitude.toString());
         viewHolder.longtitude.setText(shop.longtitude.toString());
         viewHolder.radius.setText(shop.radius.toString());
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ShopMapActivity.class);
+                intent.putExtra(ShopMapActivity.SELECTED_SHOP_LATITUDE, shop.latitude);
+                intent.putExtra(ShopMapActivity.SELECTED_SHOP_LONGTITUDE, shop.longtitude);
+                startActivity(context, intent, null);
+            }
+        });
     }
 
     final class ViewHolder extends RecyclerView.ViewHolder {

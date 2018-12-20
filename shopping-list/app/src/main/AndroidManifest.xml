@@ -5,6 +5,7 @@
     <permission-group
         android:name="pl.dplewa.shoppinglistapp.permissions"
         android:label="ShoppingListApp permissions group" />
+
     <permission
         android:name="pl.dplewa.shoppinglistapp.permissions.NEW_ENTRY_INTENT"
         android:label="Permission for receiving updates when a new entry is added" />
@@ -16,6 +17,9 @@
 
     <uses-feature android:name="android.hardware.location.network" />
     <uses-feature android:name="android.hardware.location.gps" />
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
 
     <application
         android:icon="@mipmap/ic_launcher"
@@ -29,13 +33,14 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".activity.product.ProductListActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.SettingsActivity"
             android:parentActivityName=".activity.product.ProductListActivity" />
@@ -47,6 +52,7 @@
             android:parentActivityName=".activity.product.ProductListActivity">
             <intent-filter>
                 <action android:name="pl.dplewa.shoppinglistapp.action.EDIT" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -56,6 +62,22 @@
         <activity
             android:name=".activity.shop.AddShopActivity"
             android:parentActivityName=".activity.shop.ShopListActivity" />
+        <activity android:name=".activity.shop.ShopMapActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="pl.dplewa.shoppinglistapp.activity.shop.ShopListActivity" />
+        </activity>
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>

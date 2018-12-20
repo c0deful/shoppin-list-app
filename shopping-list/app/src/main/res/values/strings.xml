@@ -17,4 +17,5 @@
     <string name="shopFormRadiusValidateToast">Enter the location radius first</string>
     <string name="shopFormLocationPermissionRequired">Cannot save shop without location permissions</string>
     <string name="shopFormEnableGps">Please enable GPS</string>
+    <string name="title_activity_shop_map">Map</string>
 </resources>
