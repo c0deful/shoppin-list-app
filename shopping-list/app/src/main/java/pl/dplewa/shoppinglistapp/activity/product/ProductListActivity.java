@@ -13,8 +13,8 @@ import android.view.View;
 
 import pl.dplewa.shoppinglistapp.R;
 import pl.dplewa.shoppinglistapp.activity.SettingsActivity;
-import pl.dplewa.shoppinglistapp.activity.shop.ShopListActivity;
 import pl.dplewa.shoppinglistapp.activity.ThemedActivity;
+import pl.dplewa.shoppinglistapp.activity.shop.ShopListActivity;
 import pl.dplewa.shoppinglistapp.view.ProductAdapter;
 
 /**

@@ -18,4 +18,10 @@
     <string name="shopFormLocationPermissionRequired">Cannot save shop without location permissions</string>
     <string name="shopFormEnableGps">Please enable GPS</string>
     <string name="title_activity_shop_map">Map</string>
+    <string name="channel_name">Shopping List App notification channel</string>
+    <string name="channel_description">Channel for shop locations from the Shopping List App</string>
+    <string name="shop_enter_notification_title">Welcome to %1$s!</string>
+    <string name="shop_enter_notification_content">Have a nice visit.</string>
+    <string name="shop_exit_notification_title">You are leaving %1$s</string>
+    <string name="shop_exit_notification_content">See you later!</string>
 </resources>
