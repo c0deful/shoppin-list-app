@@ -66,7 +66,8 @@ public class ShopMapActivity extends FragmentActivity implements OnMapReadyCallb
                 Shop shop = dataSnapshot.getValue(Shop.class);
                 Marker marker = mMap.addMarker(new MarkerOptions()
                         .position(new LatLng(shop.latitude, shop.longtitude))
-                        .title(shop.name));
+                        .title(shop.name)
+                        .snippet(shop.description));
                 markers.put(key, marker);
             }
 
@@ -78,6 +79,7 @@ public class ShopMapActivity extends FragmentActivity implements OnMapReadyCallb
                 if (marker != null) {
                     marker.setTitle(shop.name);
                     marker.setPosition(new LatLng(shop.latitude, shop.longtitude));
+                    marker.setSnippet(shop.description);
                 }
             }
 
