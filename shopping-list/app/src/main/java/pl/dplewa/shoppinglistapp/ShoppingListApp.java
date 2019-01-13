@@ -39,6 +39,6 @@ public class ShoppingListApp extends Application {
         LocationServices.getFusedLocationProviderClient(this).requestLocationUpdates(req,
                 PendingIntent.getService(this, 0, new Intent(this, NoopIntentService.class), PendingIntent.FLAG_UPDATE_CURRENT));
 
-        startService(new Intent(this, ShopTransitionsIntentService.class));
+//        startService(new Intent(this, ShopTransitionsIntentService.class));
     }
 }
