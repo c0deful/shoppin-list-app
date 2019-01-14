@@ -8,6 +8,33 @@
         android:id="@+id/widget_web_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:text="@string/widget_web_button"/>
+
+    <ImageView
+        android:id="@+id/widget_image"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_below="@id/widget_web_button"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/widget.images.contentdescription"
+        android:scaleType="fitCenter" />
+
+    <Button
+        android:id="@+id/widget_image_prev"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/widget_image"
+        android:text="@string/widget_image_prev"/>
+
+    <Button
+        android:id="@+id/widget_image_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/widget_image"
+        android:layout_alignParentEnd="true"
+        android:text="@string/widget_image_next"/>
 
 </RelativeLayout>

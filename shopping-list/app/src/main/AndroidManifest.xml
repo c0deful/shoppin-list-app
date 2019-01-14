@@ -90,6 +90,8 @@
         <receiver android:name=".MultimediaWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="pl.dplewa.shoppinglistapp.widget.action.image.next" />
+                <action android:name="pl.dplewa.shoppinglistapp.widget.action.image.prev" />
             </intent-filter>
 
             <meta-data

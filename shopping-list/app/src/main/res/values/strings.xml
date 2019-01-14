@@ -25,4 +25,7 @@
     <string name="shop_exit_notification_title">You are leaving %1$s</string>
     <string name="shop_exit_notification_content">See you later!</string>
     <string name="widget_web_button">Google</string>
+    <string name="widget_image_prev"><![CDATA[<<]]></string>
+    <string name="widget_image_next"><![CDATA[>>]]></string>
+    <string name="widget.images.contentdescription">Kitten images</string>
 </resources>
