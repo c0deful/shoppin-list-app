@@ -90,6 +90,12 @@
         <receiver android:name=".MultimediaWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="pl.dplewa.shoppinglistapp.widget.action.image.next" />
+                <action android:name="pl.dplewa.shoppinglistapp.widget.action.image.prev" />
+                <action android:name="pl.dplewa.shoppinglistapp.widget.action.sound.prev" />
+                <action android:name="pl.dplewa.shoppinglistapp.widget.action.sound.next" />
+                <action android:name="pl.dplewa.shoppinglistapp.widget.action.sound.pauseresume" />
+                <action android:name="pl.dplewa.shoppinglistapp.widget.action.sound.stop" />
             </intent-filter>
 
             <meta-data
