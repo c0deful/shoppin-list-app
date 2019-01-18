@@ -28,10 +28,10 @@
     <string name="widget_image_prev"><![CDATA[<<]]></string>
     <string name="widget_image_next"><![CDATA[>>]]></string>
     <string name="widget.images.contentdescription">Kitten images</string>
-    <string name="widget_music_prev"><![CDATA[|<]]></string>
-    <string name="widget_music_next"><![CDATA[>|]]></string>
-    <string name="widget_music_title">Music</string>
-    <string name="widget_music_stop">Stop</string>
-    <string name="widget_music_resume">Resume</string>
-    <string name="widget_music_pause">Pause</string>
+    <string name="widget_sound_prev"><![CDATA[|<]]></string>
+    <string name="widget_sound_next"><![CDATA[>|]]></string>
+    <string name="widget_sound_title">Music</string>
+    <string name="widget_sound_stop">Stop</string>
+    <string name="widget_sound_resume">Resume</string>
+    <string name="widget_sound_pause">Pause</string>
 </resources>

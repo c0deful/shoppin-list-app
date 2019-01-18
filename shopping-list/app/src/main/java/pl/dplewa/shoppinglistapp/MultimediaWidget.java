@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.RemoteViews;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -62,22 +61,22 @@ public class MultimediaWidget extends AppWidgetProvider {
         views.setOnClickPendingIntent(R.id.widget_web_button, getWebViewPendingIntent(context));
         views.setOnClickPendingIntent(R.id.widget_image_prev, getSelfPendingIntent(context, ACTION_IMAGE_PREV, appWidgetId));
         views.setOnClickPendingIntent(R.id.widget_image_next, getSelfPendingIntent(context, ACTION_IMAGE_NEXT, appWidgetId));
-        views.setOnClickPendingIntent(R.id.widget_music_prev, getSelfPendingIntent(context, ACTION_SOUND_PREV, appWidgetId));
-        views.setOnClickPendingIntent(R.id.widget_music_next, getSelfPendingIntent(context, ACTION_SOUND_NEXT, appWidgetId));
-        views.setOnClickPendingIntent(R.id.widget_music_pause_resume, getSelfPendingIntent(context, ACTION_SOUND_PAUSE_RESUME, appWidgetId));
-        views.setOnClickPendingIntent(R.id.widget_music_stop, getSelfPendingIntent(context, ACTION_SOUND_STOP, appWidgetId));
+        views.setOnClickPendingIntent(R.id.widget_sound_prev, getSelfPendingIntent(context, ACTION_SOUND_PREV, appWidgetId));
+        views.setOnClickPendingIntent(R.id.widget_sound_next, getSelfPendingIntent(context, ACTION_SOUND_NEXT, appWidgetId));
+        views.setOnClickPendingIntent(R.id.widget_sound_pause_resume, getSelfPendingIntent(context, ACTION_SOUND_PAUSE_RESUME, appWidgetId));
+        views.setOnClickPendingIntent(R.id.widget_sound_stop, getSelfPendingIntent(context, ACTION_SOUND_STOP, appWidgetId));
 
         final int imageIndex = options.getInt(OPTION_IMAGE_INDEX, 0);
         views.setImageViewResource(R.id.widget_image, IMAGES.get(imageIndex));
 
         if (getCurrentMediaPlayer(context).isPlaying()) {
-            views.setTextViewText(R.id.widget_music_pause_resume, context.getString(R.string.widget_music_pause));
+            views.setTextViewText(R.id.widget_sound_pause_resume, context.getString(R.string.widget_sound_pause));
         } else {
-            views.setTextViewText(R.id.widget_music_pause_resume, context.getString(R.string.widget_music_resume));
+            views.setTextViewText(R.id.widget_sound_pause_resume, context.getString(R.string.widget_sound_resume));
         }
 
         // progress counter for debug purposes
-        views.setTextViewText(R.id.widget_music_progress, currentMediaPlayer.getCurrentPosition() + " / " + currentMediaPlayer.getDuration());
+        views.setTextViewText(R.id.widget_sound_progress, currentMediaPlayer.getCurrentPosition() + " / " + currentMediaPlayer.getDuration());
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
