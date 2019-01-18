@@ -37,4 +37,42 @@
         android:layout_alignParentEnd="true"
         android:text="@string/widget_image_next"/>
 
+    <TextView
+        android:id="@+id/widget_music_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/widget_image_next"
+        android:layout_centerHorizontal="true"
+        android:text="@string/widget_music_title"/>
+
+    <Button
+        android:id="@+id/widget_music_prev"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/widget_image_prev"
+        android:text="@string/widget_music_prev"/>
+
+    <Button
+        android:id="@+id/widget_music_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/widget_image_next"
+        android:layout_alignParentEnd="true"
+        android:text="@string/widget_music_next"/>
+
+    <Button
+        android:id="@+id/widget_music_pause_resume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/widget_music_prev"/>
+
+    <Button
+        android:id="@+id/widget_music_stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/widget_music_next"
+        android:layout_alignParentEnd="true"
+        android:text="@string/widget_music_stop"/>
 </RelativeLayout>
